@@ -1,0 +1,8 @@
+{% extends 'blogs/base.html' %} 
+{% load static %} 
+{% block title%} Home {%endblock title %}
+{% block ul %} 
+<li class="onelink"><a href="#">Home</a></li>
+<li class="onelink"><a href="{% url 'Login' %}">Log-in</a></li>
+<li class="threelink"><a href="{% url 'Register' %}">Registrarse</a></li>
+{% endblock ul %}

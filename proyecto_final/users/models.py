@@ -10,3 +10,9 @@ class App_Users(AbstractUser):
     description = models.TextField(blank=True, null=True)
     def __str__(self):
         return f'{self.last_name}, {self.first_name}'
+    
+class Avatar(models.Model):
+    user = models.OneToOneField(App_Users, on_delete=models.CASCADE, related_name='avatar')
+    image = models.ImageField(upload_to='avatares', blank=True, null=True, default='avatares/default_avatar.svg')
+    def __str__(self):
+        return f'{self.user} - {self.image}'

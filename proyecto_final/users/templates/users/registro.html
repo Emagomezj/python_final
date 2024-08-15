@@ -1,0 +1,20 @@
+{% extends 'blogs/base.html' %} 
+{% load static %} 
+{% block title%} Registrarse {%endblock title %}
+
+{% block main%}
+<div>
+    <table>
+        <p>{{ msg_register }}</p>
+
+            <form action="" method="POST" enctype="multipart/form-data" >
+                {% csrf_token %}
+                
+                {{ form.as_table }}
+
+                <input type="submit" value="Registrarse">
+            </form>
+
+    </table>
+</div>
+{% endblock main %}
