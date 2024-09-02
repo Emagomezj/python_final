@@ -1,5 +1,12 @@
 from django.db import models
 from users.models import App_Users
+import uuid
+import os
+
+def get_random_filename(instance, filename):
+    ext = filename.split('.')[-1]
+    folder = 'blogs_imgs'
+    return os.path.join(folder, f'file.{uuid.uuid4().hex}.{ext}')
 
 # Create your models here.
 class Blogs(models.Model):
@@ -10,6 +17,12 @@ class Blogs(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     def __str__(self):
         return f'{self.title}'
+
+class Blog_img(models.Model):
+    blog = models.OneToOneField(Blogs, on_delete=models.CASCADE, related_name='thumbnail')
+    image = models.ImageField(upload_to=get_random_filename, blank=True, null=True, default='blogs_imgs/default_blog_img.jpg')
+    def __str__(self):
+        return f'{self.blog.title} - {self.image}'
     
 class Post(models.Model):
     author = models.ForeignKey(App_Users,null=True, on_delete=models.SET_NULL, related_name='posts')

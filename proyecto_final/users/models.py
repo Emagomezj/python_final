@@ -1,5 +1,12 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+import uuid
+import os
+
+def get_random_filename(instance, filename):
+    ext = filename.split('.')[-1]
+    folder = 'avatares'
+    return os.path.join(folder, f'file.{uuid.uuid4().hex}.{ext}')
 
 # Create your models here.
 class App_Users(AbstractUser):
@@ -13,6 +20,6 @@ class App_Users(AbstractUser):
     
 class Avatar(models.Model):
     user = models.OneToOneField(App_Users, on_delete=models.CASCADE, related_name='avatar')
-    image = models.ImageField(upload_to='avatares', blank=True, null=True, default='avatares/default_avatar.svg')
+    image = models.ImageField(upload_to=get_random_filename, blank=True, null=True, default='avatares/default_avatar.svg')
     def __str__(self):
         return f'{self.user} - {self.image}'

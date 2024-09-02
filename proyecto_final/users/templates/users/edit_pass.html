@@ -2,15 +2,17 @@
 {% load static %} 
 {% block title%} Cambiar Contraseña {%endblock title %}
 {% block main %}
-    <form action="" method="POST">
-        {% csrf_token %}
-
-        <table>
-            {{ form.as_table }}
-        </table>
-
-        <input type="submit" value="Cambiar pass">
-
-    </form>
+    <div id="leftPan">
+        <form action="" method="POST">
+            {% csrf_token %}
+    
+            <table>
+                {{ form.as_table }}
+            </table>
+    
+            <input type="submit" value="Cambiar pass">
+    
+        </form>
+    </div>
 
 {% endblock main %}

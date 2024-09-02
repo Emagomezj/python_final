@@ -1,0 +1,16 @@
+{% extends 'blogs/base.html' %} 
+{% load static %} 
+{% block title%} New Blog {%endblock title %}
+{% block main %}
+
+<div id="leftPan">
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary"> Guardar modificaciones</button>
+      </form>
+      <a href="{% url 'Home' %}">Volver a Home</a>
+    </form>
+</div>
+
+{% endblock main %}

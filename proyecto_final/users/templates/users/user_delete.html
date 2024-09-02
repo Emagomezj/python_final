@@ -1,0 +1,12 @@
+{% extends 'blogs/base.html' %}
+{% block title %}Eliminar Cuenta{% endblock title %}
+{% block main %}
+<div id="leftPan">
+    <h2>¿Estás seguro de que deseas eliminar tu cuenta?</h2>
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit">Eliminar Cuenta</button>
+        <a href="{% url 'Home' %}">Cancelar</a>
+    </form>
+</div>
+{% endblock main %}

@@ -1,0 +1,23 @@
+{% extends 'blogs/base.html' %} 
+{% load static %} 
+{% block title%} Confirmar Eliminación {%endblock title %}
+
+{% block main %}
+  <div id="leftPan">
+      <h2>Confirmar eliminación del post</h2>
+    
+      <p>¿Estás seguro de que deseas eliminar este blog?</p>
+    
+      <div class="post-details">
+        <p><strong>Blog:</strong> {{ blog.title }}</p>
+        <p><strong>Autor:</strong> {{ blog.author }}</p>
+        <p><strong>Contenido:</strong> {{ blog.content }}</p>
+      </div>
+    
+      <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Eliminar</button>
+        <a href="{% url 'blog_detail' blog.pk %}" class="btn btn-secondary">Cancelar</a>
+      </form>
+  </div>
+{% endblock main %}

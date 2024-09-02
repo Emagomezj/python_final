@@ -3,15 +3,17 @@
 {% block title%} Editar información de Usuario {%endblock title %}
 
 {% block main %}
-    <form action="" method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-
-        <table>
-            {{ mi_form.as_table }}
-        </table>
-        <a href="{% url 'ChangePass' %}">Cambiar contraseña</a>
-        <input type="submit" value="Actualizar">
-
-    </form>
+    <div id="leftPan">
+        <form action="" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+    
+            <table>
+                {{ mi_form.as_table }}
+            </table>
+            <a href="{% url 'ChangePass' %}">Cambiar contraseña</a>
+            <input type="submit" value="Actualizar">
+    
+        </form>
+    </div>
 
 {% endblock main %}
