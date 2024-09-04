@@ -5,13 +5,13 @@
   <div id="leftPan">
     <h2>{{ blog.title }}</h2>
     <img src="{{blog.thumbnail.image.url}}" alt="" height="90px">
-    <p>{{ blog.description }}</p>
+    <p style="color: white;">{{ blog.description }}</p>
     {% if blog.author == request.user or request.user.is_superuser %}
-      <a href="{% url 'blog_update' blog.pk %}" class="link">Editar</a>
-      <a href="{% url 'blog_delete' blog.pk %}" class="link">Eliminar</a>
+      <a href="{% url 'blog_update' blog.pk %}" class="link">Editar |</a>
+      <a href="{% url 'blog_delete' blog.pk %}" class="link">Eliminar |</a>
     {% endif %}
     {% if request.user.is_authenticated %}
-    <a href="{% url 'post_create' blog.pk %}" class="link">Agregar respuesta</a>
+    <a href="{% url 'post_create' blog.pk %}" class="link">Agregar respuesta |</a>
     {% endif %}
     <a href="{% url 'Home' %}" class="link">Volver a Home</a>
     <h2>Posts Relacionados</h2>
@@ -19,12 +19,12 @@
     {% if page_obj.object_list %}
         {% for post in page_obj.object_list %}
           <div>
-            <p>{{ post.content }}</p>
+            <p style="color: white;">{{ post.content }}</p>
             <p> Autor:{{ post.author }}</p>
-            <p>Publicado el: {{ post.created_at }}</p>
+            <p>Publicado el: {{ post.created_at|date:"d M Y" }}</p>
             
             {% if post.author == request.user %}
-              <a href="{% url 'post_update' post.pk %}" class="link">Modificar</a>
+              <a href="{% url 'post_update' post.pk %}" class="link"> Modificar |</a>
             {% endif %}
             
             {% if post.author == request.user or request.user.is_superuser %}
@@ -57,37 +57,34 @@
   <div id="middlePan">
     <h2>
       Publications<br />
-      <span>on july 2006</span>
+      <span>on {{ month_name }} {{ year_four_digits }}</span>
     </h2>
     <div id="middleulPan">
       <ul>
         <li class="one">
-          Lorem ipsum <br />
-          dolor sit amet, consectetuer adipiscing <br />
-          <span>09th june 2006</span>
+          {{latest_blogs.0.title}} <br/>
+          {{latest_blogs.0.author}}
+          <span> <br /> {{latest_blogs.0.created_at|date:"d M Y"}}</span>
         </li>
         <li class="two">
-          Lorem ipsum <br />
-          dolor sit amet, consectetuer adipiscing
-          <span
-            ><br />
-            09th june 2006</span
-          >
+          {{latest_blogs.1.title}} <br/>
+          {{latest_blogs.1.author}}
+          <span> <br /> {{latest_blogs.1.created_at|date:"d M Y"}}</span>
         </li>
         <li class="three">
-          Lorem ipsum <br />
-          dolor sit amet, consectetuer adipiscing <br />
-          <span>09th june 2006</span>
+          {{latest_blogs.2.title}} <br/>
+          {{latest_blogs.2.author}}
+          <span> <br /> {{latest_blogs.2.created_at|date:"d M Y"}}</span>
         </li>
         <li class="four">
-          Lorem ipsum <br />
-          dolor sit amet, consectetuer adipiscing<br />
-          <span> 09th june 2006</span>
+          {{latest_blogs.3.title}} <br/>
+          {{latest_blogs.3.author}}
+          <span> <br /> {{latest_blogs.3.created_at|date:"d M Y"}}</span>
         </li>
         <li class="five">
-          Lorem ipsum <br />
-          dolor sit amet, consectetuer adipiscing<br />
-          <span> 09th june 2006</span>
+          {{latest_blogs.4.title}} <br/>
+          {{latest_blogs.4.author}}
+          <span> <br /> {{latest_blogs.4.created_at|date:"d M Y"}}</span>
         </li>
       </ul>
     </div>

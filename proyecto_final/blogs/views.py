@@ -1,9 +1,10 @@
 from django.shortcuts import render
+from django.db.models import Q
 from django.urls import reverse_lazy
 from django.core.files.storage import default_storage
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .models import Blogs, Post
-from .forms import BlogForm, PostForm
+from .forms import BlogForm, PostForm, SearchForm
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.core.exceptions import PermissionDenied
 from django.core.paginator import Paginator
@@ -118,15 +119,16 @@ class BlogDeleteView(LoginRequiredMixin, DeleteView):
 
         # Llama al método padre para eliminar el objeto
         return super().form_valid(form)
+class UserBlogsListView(LoginRequiredMixin, ListView):
+    model = Blogs
+    template_name = 'blogs/user_blogs_list.html'
+    context_object_name = 'blogs'
 
+    def get_queryset(self):
+        return Blogs.objects.filter(author=self.request.user)
 
 
 # Vistas para Posts
-
-    model = Post
-    template_name = 'posts/post_detail.html'
-    context_object_name = 'post'
-
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
     form_class = PostForm
@@ -144,7 +146,7 @@ class PostCreateView(LoginRequiredMixin, CreateView):
 class PostUpdateView(UpdateView):
     model = Post
     form_class = PostForm
-    template_name = 'posts/post_form.html'
+    template_name = 'blogs/post_form.html'
     success_url = reverse_lazy('post_list')
     def dispatch(self, request, *args, **kwargs):
         post = self.get_object()
@@ -157,13 +159,35 @@ class PostUpdateView(UpdateView):
         return reverse_lazy('blog_detail', kwargs={'pk': self.object.blog.pk})
 class PostDeleteView(DeleteView):
     model = Post
-    template_name = 'posts/post_confirm_delete.html'
+    template_name = 'blogs/post_confirm_delete.html'
 
     def dispatch(self, request, *args, **kwargs):
         post = self.get_object()
-        if post.blog.author != request.user and not request.user.is_superuser:
+        if post.author != request.user and not request.user.is_superuser:
             raise PermissionDenied
         return super().dispatch(request, *args, **kwargs)
 
     def get_success_url(self):
         return reverse_lazy('blog_detail', kwargs={'pk': self.object.blog.pk})
+
+def search(request):
+    form = SearchForm(request.GET or None)
+    blogs = []
+    posts = []
+    if form.is_valid():
+        query = form.cleaned_data['query']
+        if query:
+            # Filtrar blogs por título, keywords y descripción
+            blogs = Blogs.objects.filter(
+                Q(title__icontains=query) |
+                Q(keywords__icontains=query) |
+                Q(description__icontains=query)
+            )
+            # Filtrar posts por contenido
+            posts = Post.objects.filter(content__icontains=query)
+
+    return render(request, 'blogs/search_results.html', {
+        'form': form,
+        'blogs': blogs,
+        'posts': posts,
+    })

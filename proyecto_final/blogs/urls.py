@@ -1,7 +1,8 @@
 from django.urls import path
 from blogs import views
+from blogs.views import UserBlogsListView
 from .views import (
-    BlogListView, BlogDetailView, BlogCreateView, BlogUpdateView, BlogDeleteView,PostCreateView, PostUpdateView, PostDeleteView,show_default_image_url
+    BlogListView, BlogDetailView, BlogCreateView, BlogUpdateView, BlogDeleteView,PostCreateView, PostUpdateView, PostDeleteView, search ,show_default_image_url
 )
 
 urlpatterns = [
@@ -14,6 +15,8 @@ urlpatterns = [
     path('blog/<int:pk>/post/new/', PostCreateView.as_view(), name='post_create'),
     path('post/<int:pk>/edit/', PostUpdateView.as_view(), name='post_update'),
     path('post/<int:pk>/delete/', PostDeleteView.as_view(), name='post_delete'),
+    path('my-blogs/', UserBlogsListView.as_view(), name='user_blogs_list'),
+    path('search/', search, name='search'),
     path('about_us', views.about_us, name='About_us')
     # path('/blog/<bid>',)
 ]

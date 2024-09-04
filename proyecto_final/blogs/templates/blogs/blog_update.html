@@ -12,5 +12,52 @@
       <a href="{% url 'Home' %}">Volver a Home</a>
     </form>
 </div>
+<div id="middlePan">
+  <h2>
+    Publications<br />
+    <span>on {{ month_name }} {{ year_four_digits }}</span>
+  </h2>
+  <div id="middleulPan">
+    <ul>
+      <li class="one">
+        {{latest_blogs.0.title}} <br/>
+        {{latest_blogs.0.author}}
+        <span> <br /> {{latest_blogs.0.created_at|date:"d M Y"}}</span>
+      </li>
+      <li class="two">
+        {{latest_blogs.1.title}} <br/>
+        {{latest_blogs.1.author}}
+        <span> <br /> {{latest_blogs.1.created_at|date:"d M Y"}}</span>
+      </li>
+      <li class="three">
+        {{latest_blogs.2.title}} <br/>
+        {{latest_blogs.2.author}}
+        <span> <br /> {{latest_blogs.2.created_at|date:"d M Y"}}</span>
+      </li>
+      <li class="four">
+        {{latest_blogs.3.title}} <br/>
+        {{latest_blogs.3.author}}
+        <span> <br /> {{latest_blogs.3.created_at|date:"d M Y"}}</span>
+      </li>
+      <li class="five">
+        {{latest_blogs.4.title}} <br/>
+        {{latest_blogs.4.author}}
+        <span> <br /> {{latest_blogs.4.created_at|date:"d M Y"}}</span>
+      </li>
+    </ul>
+  </div>
+  <div id="middlecaptionPan">
+    <h3>
+      for our<br />
+      <span>GOODWILL</span>
+    </h3>
+    <p>
+      &quot;tellus.faucibus aliquam. In faucibus aliquet velit. Vivamus eget
+      mauris. mnec Cras condimentum ullamcorper pede. Sed nec elitfaucibus
+      aliquam&quot;
+    </p>
+    <p align="right"><span>l stephens</span></p>
+  </div>
+</div>
 
 {% endblock main %}

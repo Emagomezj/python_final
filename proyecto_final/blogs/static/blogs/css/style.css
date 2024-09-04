@@ -27,10 +27,12 @@ ul{list-style-type:none;}
 /*--/TOP PANEL--*/
 
 /*--LEFT PANEL--*/
-a.link{text-decoration: none; color: white; text-shadow: #1B1B1B solid 1px 1px 1px;}
+a.link{text-decoration: none; color: #01699F; text-shadow: 1px 1px 2px black;}
 a.link:hover{
-    color: #01699F;
+    color: white;
 }
+#leftPan ul li.li_search{height: min-content; margin-top: 20px;}
+#leftPan ul li.li_search p{padding: 5px 30px 0 29px;}
 #leftPan{width:352px; float:left; margin:0; background:#414141; color:#969595;}
 #leftPan h2{display:block; height:50px; font:24px/20px Georgia, "Times New Roman", Times, serif; font-weight:bold; color:#66EA00; background: url(images/lefttopbg.gif) 0 0 repeat-x #404040; padding:20px 0 0 29px;}
 #leftPan h2 span{font:21px/20px "Trebuchet MS", Arial, Helvetica, sans-serif; font-weight:normal;}

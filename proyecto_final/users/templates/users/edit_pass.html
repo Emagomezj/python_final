@@ -17,37 +17,34 @@
     <div id="middlePan">
         <h2>
           Publications<br />
-          <span>on july 2006</span>
+          <span>on {{ month_name }} {{ year_four_digits }}</span>
         </h2>
         <div id="middleulPan">
           <ul>
             <li class="one">
-              Lorem ipsum <br />
-              dolor sit amet, consectetuer adipiscing <br />
-              <span>09th june 2006</span>
+              {{latest_blogs.0.title}} <br/>
+              {{latest_blogs.0.author}}
+              <span> <br /> {{latest_blogs.0.created_at|date:"d M Y"}}</span>
             </li>
             <li class="two">
-              Lorem ipsum <br />
-              dolor sit amet, consectetuer adipiscing
-              <span
-                ><br />
-                09th june 2006</span
-              >
+              {{latest_blogs.1.title}} <br/>
+              {{latest_blogs.1.author}}
+              <span> <br /> {{latest_blogs.1.created_at|date:"d M Y"}}</span>
             </li>
             <li class="three">
-              Lorem ipsum <br />
-              dolor sit amet, consectetuer adipiscing <br />
-              <span>09th june 2006</span>
+              {{latest_blogs.2.title}} <br/>
+              {{latest_blogs.2.author}}
+              <span> <br /> {{latest_blogs.2.created_at|date:"d M Y"}}</span>
             </li>
             <li class="four">
-              Lorem ipsum <br />
-              dolor sit amet, consectetuer adipiscing<br />
-              <span> 09th june 2006</span>
+              {{latest_blogs.3.title}} <br/>
+              {{latest_blogs.3.author}}
+              <span> <br /> {{latest_blogs.3.created_at|date:"d M Y"}}</span>
             </li>
             <li class="five">
-              Lorem ipsum <br />
-              dolor sit amet, consectetuer adipiscing<br />
-              <span> 09th june 2006</span>
+              {{latest_blogs.4.title}} <br/>
+              {{latest_blogs.4.author}}
+              <span> <br /> {{latest_blogs.4.created_at|date:"d M Y"}}</span>
             </li>
           </ul>
         </div>
@@ -64,5 +61,4 @@
           <p align="right"><span>l stephens</span></p>
         </div>
       </div>
-
 {% endblock main %}

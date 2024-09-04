@@ -1,23 +1,37 @@
-{% extends 'blogs/base.html' %} 
-{% load static %} 
-{% block title%} Registrarse {%endblock title %}
+{% extends 'blogs/base.html' %}
 
-{% block main%}
-<div id="leftPan">
-    <table>
-        <p>{{ msg_register }}</p>
+{% block title %}Resultados de Búsqueda{% endblock %}
 
-            <form action="" method="POST" enctype="multipart/form-data" >
-                {% csrf_token %}
-                
-                {{ form.as_table }}
-
-                <input type="submit" value="Registrarse">
-            </form>
-
-    </table>
-</div>
-<div id="middlePan">
+{% block main %}
+  <div id="leftPan">
+      <h1>Resultados de Búsqueda</h1>
+      <form action="{% url 'search' %}" method="get">
+          {{ form.as_p }}
+          <input type="submit" class="button" value="Go" />
+      </form>
+      
+      <h2>Blogs</h2>
+      <ul>
+        {% for blog in blogs %}
+          <li class="li_search">
+            <a href="{% url 'blog_detail' blog.pk %}">{{ blog.title }}</a>
+            <p>{{ blog.keywords }} - {{ blog.description|truncatewords:20 }}</p>
+          </li>
+        {% empty %}
+          <li class="li_search">No se encontraron blogs.</li>
+        {% endfor %}
+      </ul>
+      
+      <h2>Posts</h2>
+      <ul>
+        {% for post in posts %}
+          <li class="li_search">{{ post.content|truncatewords:10 }} - <a href="{% url 'blog_detail' post.blog.pk %}">Leer más</a></li>
+        {% empty %}
+          <li class="li_search">No se encontraron posts.</li>
+        {% endfor %}
+      </ul>
+  </div>
+  <div id="middlePan">
     <h2>
       Publications<br />
       <span>on {{ month_name }} {{ year_four_digits }}</span>
@@ -47,7 +61,7 @@
         <li class="five">
           {{latest_blogs.4.title}} <br/>
           {{latest_blogs.4.author}}
-          <span> <br /> {{latest_blogs.4.created_at|date:"d M Y"|date:"d M Y"}}</span>
+          <span> <br /> {{latest_blogs.4.created_at|date:"d M Y"}}</span>
         </li>
       </ul>
     </div>

@@ -48,28 +48,27 @@
       <ul>
         <li><a href="{% url 'Home' %}">Home</a></li>
         <li><a href="{% url 'About_us' %}">About us</a></li>
-        <li class="contact"><a href="#">Contact </a></li>
       </ul>
       <h2>User Links</h2>
       {% if request.user.is_authenticated %}
       <ul class="userlink">
+        <li class="userlink"><a href="{% url 'user_blogs_list'%}">Mis Post</a></li>
         <li class="userlink"><a href="{% url 'Delete_account' request.user.pk %}">Eliminar mi cuenta</a></li>
       </ul>
       {% else %}
       <p class="userlink">Debe registrarse para gestionar una cuenta</p>
       {% endif %}
-      <form name="login" id="login" action="#" method="post" class="position">
-        <h3>search</h3>
-        <input name="" type="text" />
-        <input name="" type="submit" class="button" value="Go" />
-      </form>
+      <form action="{% url 'search' %}" method="get">
+        <h3>Buscar</h3>
+        <input type="text" name="query" placeholder="Buscar...">
+        <input type="submit" class="button" value="Go">
+    </form>
     </div>
     <div id="footermainPan">
       <div id="footerPan">
         <ul>
           <li><a href="{% url 'Home' %}">Home</a>|</li>
           <li><a href="{% url 'About_us' %}">About</a> |</li>
-          <li><a href="#">Contact</a></li>
         </ul>
         <p class="copyright">�ntechblog 2006 all right reaserved</p>
         <a href="#"
@@ -81,12 +80,6 @@
             height="74"
             border="0"
         /></a>
-        <div id="footerPanhtml">
-          <a href="http://validator.w3.org/check?uri=referer">html</a>
-        </div>
-        <div id="footerPancss">
-          <a href="http://jigsaw.w3.org/css-validator/check/referer">css</a>
-        </div>
         <ul class="templateworld">
           <li>Design By:</li>
           <li><a href="http://www.templateworld.com">Template World</a></li>

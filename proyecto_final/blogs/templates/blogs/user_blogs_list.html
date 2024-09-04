@@ -1,0 +1,89 @@
+{% extends 'blogs/base.html' %}
+{% block title %}Mis Blogs{% endblock title %}
+{% block main %}
+  <div id="leftPan">
+    <h1>Mis Blogs</h1>
+      {% if blogs %}
+            {% for blog in blogs %}
+              <div class="blog">
+                <div class="dateone">
+                  <div class="header_blog_list">
+                    <div class="date">
+                      <p class="day"> {{blog.day_with_leading_zero}} </p>
+                      <p class="month">{{blog.month_with_leading_zero}}</p>
+                      <p class="year">{{blog.created_at.year}}</p>
+                    </div>
+                    <img src="{{blog.author.avatar.image.url}}" alt="">
+                    <div class="name_title">
+                      <span class="blue">{{blog.author}}</span><br />
+                    <span class="white">{{blog.title}}</span>
+                    </div>
+                  </div>
+                <div/>
+                <p class="buttomshadow">&nbsp;</p>
+                <p>{{ blog.description|truncatewords:20 }}</p>
+                <div id="leftlinkboxonePan">
+                  <ul>
+                    <li class="comments">Respuestas: <span class="boldtext">{{ blog.post_count }}</span></li>
+                    <li class="continue"><a href="{% url 'blog_detail' blog.pk %}">Ver más</a></li>
+                  </ul>
+                </div> </div>
+                <p class="topshadow">&nbsp;</p>
+              </>
+       </div> </div>
+          {% empty %}
+            <div><p>No hay ningún blog aún.</p> </div>
+          {% endfor %}
+        {% else %}
+          <div><p>No hay ningún blog aún.</p></div>
+        {% endif %}
+  </div>
+</div>
+<div id="middlePan">
+    <h2>
+      Publications<br />
+      <span>on {{ month_name }} {{ year_four_digits }}</span>
+    </h2>
+    <div id="middleulPan">
+      <ul>
+        <li class="one">
+          {{latest_blogs.0.title}} <br/>
+          {{latest_blogs.0.author}}
+          <span> <br /> {{latest_blogs.0.created_at|date:"d M Y"}}</span>
+        </li>
+        <li class="two">
+          {{latest_blogs.1.title}} <br/>
+          {{latest_blogs.1.author}}
+          <span> <br /> {{latest_blogs.1.created_at|date:"d M Y"}}</span>
+        </li>
+        <li class="three">
+          {{latest_blogs.2.title}} <br/>
+          {{latest_blogs.2.author}}
+          <span> <br /> {{latest_blogs.2.created_at|date:"d M Y"}}</span>
+        </li>
+        <li class="four">
+          {{latest_blogs.3.title}} <br/>
+          {{latest_blogs.3.author}}
+          <span> <br /> {{latest_blogs.3.created_at|date:"d M Y"}}</span>
+        </li>
+        <li class="five">
+          {{latest_blogs.4.title}} <br/>
+          {{latest_blogs.4.author}}
+          <span> <br /> {{latest_blogs.4.created_at|date:"d M Y"}}</span>
+        </li>
+      </ul>
+    </div>
+    <div id="middlecaptionPan">
+      <h3>
+        for our<br />
+        <span>GOODWILL</span>
+      </h3>
+      <p>
+        &quot;tellus.faucibus aliquam. In faucibus aliquet velit. Vivamus eget
+        mauris. mnec Cras condimentum ullamcorper pede. Sed nec elitfaucibus
+        aliquam&quot;
+      </p>
+      <p align="right"><span>l stephens</span></p>
+    </div>
+  </div>
+{% endblock main%}
