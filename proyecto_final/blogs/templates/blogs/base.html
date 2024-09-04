@@ -52,7 +52,7 @@
       <h2>User Links</h2>
       {% if request.user.is_authenticated %}
       <ul class="userlink">
-        <li class="userlink"><a href="{% url 'user_blogs_list'%}">Mis Post</a></li>
+        <li class="userlink"><a href="{% url 'user_blogs_list'%}">Mis Blogs</a></li>
         <li class="userlink"><a href="{% url 'Delete_account' request.user.pk %}">Eliminar mi cuenta</a></li>
       </ul>
       {% else %}

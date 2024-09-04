@@ -208,3 +208,4 @@ a.link:hover{
 #footerPancss{width:59px; height:24px; position:absolute; top:90px; left:135px;}
 #footerPancss a{width:59px; height:24px; background:url(images/cssbutton-normal.gif) 0 0 no-repeat #2A2A2A; display:block; position:absolute; top:3px; left:3px; margin:0; padding:0 0 0 10px; color:#fff; text-transform:uppercase; text-decoration:none; line-height:24px; font-weight:bold;}
 #footerPancss a:hover{background:url(images/cssbutton-hover.gif) 0 0 no-repeat #2A2A2A; color:#fff; text-decoration:none;}
+

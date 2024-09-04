@@ -3,46 +3,63 @@
 {% block title%} Home {%endblock title %}
 
 {% block main %}
-   <div id="leftPan">
-      <h2>Lista de Blogs</h2>
-      {% if request.user.is_authenticated %}
-      <a href="{% url 'blog_create' %}" class="link" >Crear nuevo</a>
-      {% endif %}
-      {% if blogs %}
-        {% for blog in blogs %}
+<div id="leftPan">
+  <h2>Lista de Blogs</h2>
+  {% if request.user.is_authenticated %}
+      <a href="{% url 'blog_create' %}" class="link">Crear nuevo</a>
+  {% endif %}
+  {% if blogs %}
+      {% for blog in blogs %}
           <div class="blog">
-            <div class="dateone">
-              <div class="header_blog_list">
-                <div class="date">
-                  <p class="day"> {{blog.day_with_leading_zero}} </p>
-                  <p class="month">{{blog.month_with_leading_zero}}</p>
-                  <p class="year">{{blog.created_at.year}}</p>
-                </div>
-                <img src="{{blog.author.avatar.image.url}}" alt="">
-                <div class="name_title">
-                  <span class="blue">{{blog.author}}</span><br />
-                <span class="white">{{blog.title}}</span>
-                </div>
+              <div class="dateone">
+                  <div class="header_blog_list">
+                      <div class="date">
+                          <p class="day">{{ blog.day_with_leading_zero }}</p>
+                          <p class="month">{{ blog.month_with_leading_zero }}</p>
+                          <p class="year">{{ blog.created_at.year }}</p>
+                      </div>
+                      <img src="{{ blog.author.avatar.image.url }}" alt="">
+                      <div class="name_title">
+                          <span class="blue">{{ blog.author }}</span><br />
+                          <span class="white">{{ blog.title }}</span>
+                      </div>
+                  </div>
+                  <div class="bottomshadow">&nbsp;</div>
+                  <p>{{ blog.description|truncatewords:20 }}</p>
+                  <div id="leftlinkboxonePan">
+                      <ul>
+                          <li class="comments">Respuestas: <span class="boldtext">{{ blog.post_count }}</span></li>
+                          <li class="continue"><a href="{% url 'blog_detail' blog.pk %}">Ver más</a></li>
+                      </ul>
+                  </div>
               </div>
-            <div/>
-            <p class="buttomshadow">&nbsp;</p>
-            <p>{{ blog.description|truncatewords:20 }}</p>
-            <div id="leftlinkboxonePan">
-              <ul>
-                <li class="comments">Respuestas: <span class="boldtext">{{ blog.post_count }}</span></li>
-                <li class="continue"><a href="{% url 'blog_detail' blog.pk %}">Ver más</a></li>
-              </ul>
-            </div> </div>
-            <p class="topshadow">&nbsp;</p>
-          </>
-   </div> </div>
+              <p class="topshadow">&nbsp;</p>
+          </div>
       {% empty %}
-        <div><p>No hay ningún blog aún.</p> </div>
+          <div><p>No hay ningún blog aún.</p></div>
       {% endfor %}
-    {% else %}
+      
+      <div>
+          <span>
+              {% if page_obj.has_previous %}
+                  <a class="link" href="?page=1">&laquo; Primero</a>
+                  <a class="link" href="?page={{ page_obj.previous_page_number }}">Anterior</a>
+              {% endif %}
+
+              <span class="current">
+                  Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.
+              </span>
+
+              {% if page_obj.has_next %}
+                  <a class="link" href="?page={{ page_obj.next_page_number }}">Siguiente</a>
+                  <a class="link" href="?page={{ page_obj.paginator.num_pages }}">Último &raquo;</a>
+              {% endif %}
+          </span>
+      </div>
+  {% else %}
       <div><p>No hay ningún blog aún.</p></div>
-    {% endif %}
- </div> </div> </div>
+  {% endif %}
+</div>
 <div id="middlePan">
   <h2>
     Publications<br />

@@ -24,6 +24,10 @@ class BlogListView(ListView):
     model = Blogs
     template_name = 'blogs/home.html'
     context_object_name = 'blogs'
+    paginate_by = 5
+
+    def get_queryset(self):
+        return super().get_queryset().order_by('-created_at')
 
 class BlogDetailView(DetailView):
     model = Blogs
