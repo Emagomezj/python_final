@@ -3,15 +3,20 @@ body{margin:0; padding:0; background:url(images/mainbg.gif) 0 0 repeat-x #414141
 div, p, ul, ol, h1, h2, h3, h4, h5, img{margin:0px; padding:0px;}
 ul{list-style-type:none;}
 
+
 /*--MAIN PANEL--*/
 #mainPan{width:778px; position:relative; margin:0 auto;}
+#bodyPan{display: flex;}
 /*--TOP PANEL--*/
 #topPan{width:778px; height:174px; background:url( images/header.jpg) 100% 0 no-repeat #0799E3; color:#fff; margin:0; position:relative;}
 #topPan img.logo{width:102px; height:91px; display:block; padding:28px 0 0;}
 #topPan h1{width:191px; height:74px; position:absolute; top:45px; left:122px; display:block; font:14px/14px Arial, Helvetica, sans-serif; background:url(images/companyname.gif) 0 0 no-repeat; padding:32px 0 0;}
 #topservicesPan{width:210px; height:168px; background:url(images/services-bg.jpg) 0 0 no-repeat; position:absolute; top:0px; right:226px;} 
+#top_serv_content{display: flex;}
 #topservicesPan h2{width:130px; height:20px; background:url(images/servicesbg.gif) 0 0 repeat-x #68EF00; color:#317400; font:18px/14px Georgia, "Times New Roman", Times, serif; margin:34px 0 0 37px;}
+#top_serv_content img{padding: 0px 0px 0px 15px;}
 #topservicesPan ul{width:130px; height:79px; margin:0 0 0 37px;}
+#topservicesPan ul.log{width:130px; height:79px; margin:0 0 0 5px;}
 #topservicesPan ul li{height:20px;}
 #topservicesPan ul li.onelink a{display:block; width:94px; height:20px; background: url(images/serviceslink1bg.gif) 0 72% no-repeat #6DFD00; color:#01699F; font:13px/20px Georgia, "Times New Roman", Times, serif; text-decoration:none;}
 #topservicesPan ul li.onelink a:hover{text-decoration:none;  background: url(images/serviceslink1bg.gif) 0 72% no-repeat #6DFD00; color:#0A4767;}
@@ -22,6 +27,10 @@ ul{list-style-type:none;}
 /*--/TOP PANEL--*/
 
 /*--LEFT PANEL--*/
+a.link{text-decoration: none; color: white; text-shadow: #1B1B1B solid 1px 1px 1px;}
+a.link:hover{
+    color: #01699F;
+}
 #leftPan{width:352px; float:left; margin:0; background:#414141; color:#969595;}
 #leftPan h2{display:block; height:50px; font:24px/20px Georgia, "Times New Roman", Times, serif; font-weight:bold; color:#66EA00; background: url(images/lefttopbg.gif) 0 0 repeat-x #404040; padding:20px 0 0 29px;}
 #leftPan h2 span{font:21px/20px "Trebuchet MS", Arial, Helvetica, sans-serif; font-weight:normal;}
@@ -35,11 +44,39 @@ ul{list-style-type:none;}
 #leftPan h5 span{font:21px/20px "Trebuchet MS", Arial, Helvetica, sans-serif; font-weight:normal;}
 
 
-#leftPan p{padding:17px 34px 0 29px;}
-#leftPan p.dateone{display:block; background:url(images/date1.jpg) 0 0 no-repeat; height:54px; padding:0 0 0 118px; margin:0 0 0 29px; line-height:18px;}
-#leftPan p span.blue{font-weight:bold; text-transform:uppercase; background:#414141; color:#089DEA;}
-#leftPan p span.white{font-weight:bold; background:#414141; color:#fff; font-size:16px;}
-#leftPan p span.whitenormal{font-weight:normal; background:#414141; color:#fff; font-size:14px;}
+#leftPan p{padding:17px 30px 0 29px;}
+#leftPan div.blog div.dateone{height: 60; width: 300;}
+#leftPan div.blog div.dateone .header_blog_list{display: flex;}
+#leftPan div.blog div.dateone div.header_blog_list div.date{display: flex;flex-direction: column; padding: 0px 5px 0px 0px;}
+
+#leftPan div.blog div.dateone div.header_blog_list div.date p{
+    margin: 0px;
+    padding: 0px;
+
+}
+
+#leftPan div.blog div.dateone div.header_blog_list div.date p.day{
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+}
+#leftPan div.blog div.dateone div.header_blog_list div.date p.month{
+    color: white;
+    font-weight: lighter;
+    font-size: 16px;
+}
+
+#leftPan div.blog div.dateone div.header_blog_list div.date p.year{
+    font-size: 17px;
+    color: #66EA00;
+}
+
+#leftPan div.blog div.dateone div.header_blog_list img{height: 54px;padding: 0px 10px 0px 0px;}
+#leftPan div.blog div.dateone div.header_blog_list div.name_title{display: block;
+}
+#leftPan div.name_title span.blue{font-weight:bold; text-transform:uppercase; background:#414141; color:#089DEA;}
+#leftPan div.name_title span.white{font-weight:bold; background:#414141; color:#fff; font-size:16px;}
+#leftPan div.name_title span.whitenormal{font-weight:normal; background:#414141; color:#fff; font-size:14px;}
 
 #leftPan p.datetwo{display:block; background:url(images/date2.jpg) 0 0 no-repeat; height:54px; padding:0 0 0 118px; margin:20px 0 0 29px; line-height:18px;}
 #leftPan p span.blue{font-weight:bold; text-transform:uppercase; background:#414141; color:#089DEA;}

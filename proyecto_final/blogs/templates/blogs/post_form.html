@@ -1,18 +1,12 @@
-{% extends 'blogs/base.html' %} 
-{% load static %} 
-{% block title%} Editar información de Usuario {%endblock title %}
-
+{% extends 'blogs/base.html' %}
+{% load static %}
 {% block main %}
     <div id="leftPan">
-        <form action="" method="POST" enctype="multipart/form-data">
+        <h2>{% if object %}Editar{% else %}Crear{% endif %} Post</h2>
+        <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
-    
-            <table>
-                {{ mi_form.as_table }}
-            </table>
-            <a href="{% url 'ChangePass' %}" class="link">Cambiar contraseña</a>
-            <input type="submit" value="Actualizar">
-    
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">{% if object %}Guardar Cambios{% else %}Crear Post{% endif %}</button>
         </form>
     </div>
     <div id="middlePan">
@@ -65,5 +59,4 @@
           <p align="right"><span>l stephens</span></p>
         </div>
       </div>
-
 {% endblock main %}

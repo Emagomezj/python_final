@@ -23,9 +23,10 @@
         /></a>
         <div id="topservicesPan">
           <h2>User Panel</h2>
+          <div id="top_serv_content">
           {% if request.user.is_authenticated %}
           <img src="{{request.user.avatar.image.url}}" alt="" style="height: 50px;width: 50px;">
-          <ul>
+          <ul class="log">
             <li class="onelink"><a href="{% url 'Home' %}">Home</a></li>
             <li class="onelink"><a href="{% url 'Edit_User' %}">Editar Usuario</a></li>
             <li class="threelink"><a href="{% url 'Logout' %}">Logout</a></li>
@@ -39,58 +40,9 @@
           </ul>
           {% endif %}
         </div>
+        </div>
       </div>
       {% block main%} {% endblock main %}
-    </div>
-    <div id="middlePan">
-      <h2>
-        Publications<br />
-        <span>on july 2006</span>
-      </h2>
-      <div id="middleulPan">
-        <ul>
-          <li class="one">
-            Lorem ipsum <br />
-            dolor sit amet, consectetuer adipiscing <br />
-            <span>09th june 2006</span>
-          </li>
-          <li class="two">
-            Lorem ipsum <br />
-            dolor sit amet, consectetuer adipiscing
-            <span
-              ><br />
-              09th june 2006</span
-            >
-          </li>
-          <li class="three">
-            Lorem ipsum <br />
-            dolor sit amet, consectetuer adipiscing <br />
-            <span>09th june 2006</span>
-          </li>
-          <li class="four">
-            Lorem ipsum <br />
-            dolor sit amet, consectetuer adipiscing<br />
-            <span> 09th june 2006</span>
-          </li>
-          <li class="five">
-            Lorem ipsum <br />
-            dolor sit amet, consectetuer adipiscing<br />
-            <span> 09th june 2006</span>
-          </li>
-        </ul>
-      </div>
-      <div id="middlecaptionPan">
-        <h3>
-          for our<br />
-          <span>GOODWILL</span>
-        </h3>
-        <p>
-          &quot;tellus.faucibus aliquam. In faucibus aliquet velit. Vivamus eget
-          mauris. mnec Cras condimentum ullamcorper pede. Sed nec elitfaucibus
-          aliquam&quot;
-        </p>
-        <p align="right"><span>l stephens</span></p>
-      </div>
     </div>
     <div id="rightPan">
       <ul>
@@ -116,7 +68,7 @@
       <div id="footerPan">
         <ul>
           <li><a href="{% url 'Home' %}">Home</a>|</li>
-          <li><a href="{% url 'About_Us' %}">About</a> |</li>
+          <li><a href="{% url 'About_us' %}">About</a> |</li>
           <li><a href="#">Contact</a></li>
         </ul>
         <p class="copyright">�ntechblog 2006 all right reaserved</p>

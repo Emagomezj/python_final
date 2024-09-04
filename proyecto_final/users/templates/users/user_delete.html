@@ -6,7 +6,57 @@
     <form method="POST">
         {% csrf_token %}
         <button type="submit">Eliminar Cuenta</button>
-        <a href="{% url 'Home' %}">Cancelar</a>
+        <a href="{% url 'Home' %}" class="link">Cancelar</a>
     </form>
 </div>
+<div id="middlePan">
+    <h2>
+      Publications<br />
+      <span>on july 2006</span>
+    </h2>
+    <div id="middleulPan">
+      <ul>
+        <li class="one">
+          Lorem ipsum <br />
+          dolor sit amet, consectetuer adipiscing <br />
+          <span>09th june 2006</span>
+        </li>
+        <li class="two">
+          Lorem ipsum <br />
+          dolor sit amet, consectetuer adipiscing
+          <span
+            ><br />
+            09th june 2006</span
+          >
+        </li>
+        <li class="three">
+          Lorem ipsum <br />
+          dolor sit amet, consectetuer adipiscing <br />
+          <span>09th june 2006</span>
+        </li>
+        <li class="four">
+          Lorem ipsum <br />
+          dolor sit amet, consectetuer adipiscing<br />
+          <span> 09th june 2006</span>
+        </li>
+        <li class="five">
+          Lorem ipsum <br />
+          dolor sit amet, consectetuer adipiscing<br />
+          <span> 09th june 2006</span>
+        </li>
+      </ul>
+    </div>
+    <div id="middlecaptionPan">
+      <h3>
+        for our<br />
+        <span>GOODWILL</span>
+      </h3>
+      <p>
+        &quot;tellus.faucibus aliquam. In faucibus aliquet velit. Vivamus eget
+        mauris. mnec Cras condimentum ullamcorper pede. Sed nec elitfaucibus
+        aliquam&quot;
+      </p>
+      <p align="right"><span>l stephens</span></p>
+    </div>
+  </div>
 {% endblock main %}

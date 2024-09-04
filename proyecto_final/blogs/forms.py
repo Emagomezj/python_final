@@ -1,6 +1,4 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm, UserChangeForm
-from users.models import App_Users
 from .models import Blogs, Post
 
 class BlogForm(forms.ModelForm):
@@ -16,4 +14,5 @@ class PostForm(forms.ModelForm):
     content= forms.Textarea()
     class Meta:
         model = Post
-        fields = ['author', 'blog', 'content']
+        fields = ['content']
+        

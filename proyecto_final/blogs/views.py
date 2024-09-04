@@ -6,7 +6,9 @@ from .models import Blogs, Post
 from .forms import BlogForm, PostForm
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.core.exceptions import PermissionDenied
+from django.core.paginator import Paginator
 from django.http import HttpResponse
+from django.shortcuts import get_object_or_404, redirect
 from blogs.models import Blog_img
 
 def about_us(request):
@@ -26,6 +28,14 @@ class BlogDetailView(DetailView):
     model = Blogs
     template_name = 'blogs/blog_detail.html'
     context_object_name = 'blog'
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        posts = Post.objects.filter(blog=self.object).order_by('-created_at')
+        paginator = Paginator(posts, 5)
+        page_number = self.request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+        context['page_obj'] = page_obj
+        return context
 
 class BlogCreateView(LoginRequiredMixin,CreateView):
     model = Blogs
@@ -112,29 +122,48 @@ class BlogDeleteView(LoginRequiredMixin, DeleteView):
 
 
 # Vistas para Posts
-class PostListView(ListView):
-    model = Post
-    template_name = 'posts/post_list.html'
-    context_object_name = 'posts'
 
-class PostDetailView(DetailView):
     model = Post
     template_name = 'posts/post_detail.html'
     context_object_name = 'post'
 
-class PostCreateView(CreateView):
+class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
     form_class = PostForm
-    template_name = 'posts/post_form.html'
-    success_url = reverse_lazy('post_list')
+    template_name = 'blogs/post_form.html'
+
+    def form_valid(self, form):
+        blog = get_object_or_404(Blogs, pk=self.kwargs['pk'])
+        form.instance.blog = blog
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse_lazy('blog_detail', kwargs={'pk': self.kwargs['pk']})
 
 class PostUpdateView(UpdateView):
     model = Post
     form_class = PostForm
     template_name = 'posts/post_form.html'
     success_url = reverse_lazy('post_list')
+    def dispatch(self, request, *args, **kwargs):
+        post = self.get_object()
 
+        if post.author != request.user:
+            raise PermissionDenied
+
+        return super().dispatch(request, *args, **kwargs)
+    def get_success_url(self):
+        return reverse_lazy('blog_detail', kwargs={'pk': self.object.blog.pk})
 class PostDeleteView(DeleteView):
     model = Post
-    template_name = 'posts/post_delete.html'
-    success_url = reverse_lazy('post_list')
+    template_name = 'posts/post_confirm_delete.html'
+
+    def dispatch(self, request, *args, **kwargs):
+        post = self.get_object()
+        if post.blog.author != request.user and not request.user.is_superuser:
+            raise PermissionDenied
+        return super().dispatch(request, *args, **kwargs)
+
+    def get_success_url(self):
+        return reverse_lazy('blog_detail', kwargs={'pk': self.object.blog.pk})
